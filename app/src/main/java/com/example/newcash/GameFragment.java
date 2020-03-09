@@ -1,7 +1,9 @@
 package com.example.newcash;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Message;
@@ -9,6 +11,8 @@ import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,15 +35,7 @@ public class GameFragment extends Fragment {
 
     public ViewPager pager;
     private CirclePageIndicator indicator;
-    private TextView game2start, count_text;
-
-
-    private int MILLISINFUTURE = 1000;
-    private int COUNT_DOWN_INTERVAL = 200;
-    private int count = 10;
-    private CountDownTimer countDownTimer;
-
-
+    private TextView game1start, game2start, game3start, count_text, watchbtn;
 
 
     @Nullable
@@ -48,20 +44,31 @@ public class GameFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.game_main, container, false);
 
-        pager = view.findViewById(R.id.pager);
-        indicator = view.findViewById(R.id.indicator);
-
-        game2start = view.findViewById(R.id.game2_start);
+        //
+        game1start = view.findViewById(R.id.game1start);
+        game2start = view.findViewById(R.id.game2start);
+        game3start = view.findViewById(R.id.game3start);
         count_text = view.findViewById(R.id.count_text);
+        watchbtn = view.findViewById(R.id.watchbtn);
 
 
-        PagerAdapter pagerAdapter = new NewsAdapter(getFragmentManager(), 3);
-        pager.setAdapter(pagerAdapter);
-        indicator.setRadius(15);
-        indicator.setViewPager(pager);
+        //게임시작버튼
+        game1start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        indicator.setFillColor(Color.parseColor("#000000"));
-        indicator.setStrokeColor(Color.parseColor("#cccccc"));
+                dialogPopup();
+            }
+        });
+
+        //게임시작버튼2
+        game2start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialogPopup2();
+            }
+        });
 
 
 
@@ -70,22 +77,73 @@ public class GameFragment extends Fragment {
     }
 
 
-    //
-    public void countDownTimer(){
+    //팝업
+    public void dialogPopup() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog dialogPopup = builder.create();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_popup, null);
+
+        dialogPopup.setView(view);
+        dialogPopup.show();
+
+        Window window = dialogPopup.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
 
-        countDownTimer = new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL) {
-            public void onTick(long millisUntilFinished) {
-                count_text.setText(String.format(Locale.getDefault(), "%d sec.", millisUntilFinished / 1000L));
+        //시청버튼
+        TextView watchbtn = view.findViewById(R.id.watchbtn);
+        watchbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // activity 전환
+
+                Intent intent = new Intent(getActivity(), SaveActivity.class);
+                startActivity(intent);
+
+                dialogPopup.dismiss();
             }
-            public void onFinish() {
-                count_text.setText("Done.");
+        });
+
+        //취소버튼
+        TextView cancelbtn = view.findViewById(R.id.cancelbtn);
+        cancelbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogPopup.dismiss();
             }
-        };
+        });
     }
+    //팝업
+    public void dialogPopup2() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog dialogPopup = builder.create();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_popup2, null);
+
+        dialogPopup.setView(view);
+        dialogPopup.show();
+
+        Window window = dialogPopup.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
 
+        //취소버튼
+        TextView cancelbtn = view.findViewById(R.id.cancelbtn);
+        cancelbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                dialogPopup.dismiss();
+            }
+        });
+    }
+    //팝업
 
 
     //

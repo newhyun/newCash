@@ -12,28 +12,232 @@
         android:background="#ffffff"
         >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="115dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_15_ffffff"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:elevation="3dp"
+            android:paddingLeft="20dp"
             >
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/pager"
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/main_a"
+                android:layout_gravity="center_vertical"
+                />
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/purple_circle"
+                android:layout_marginLeft="15dp"
+                />
+
+            <LinearLayout
+                android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="100dp"
-                android:background="@drawable/round_stroke_yellow"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    >
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="걸음수"
+                        android:textSize="12sp"
+                        />
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4,534"
+                        android:textSize="18sp"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:gravity="right"
+                        />
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/main_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:max="10000"
+                    android:progress="4946"
+                    android:progressDrawable="@drawable/progressbar_custom"
+                    />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_15_f6e820"
+                >
+                <TextView
+                    android:id="@+id/game1start"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="완료"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--   2   -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_15_ffffff"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:elevation="3dp"
+            android:paddingLeft="20dp"
+            >
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/phone"
+                android:layout_gravity="center_vertical"
                 />
-            <com.viewpagerindicator.CirclePageIndicator
-                android:id="@+id/indicator"
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/purple_circle"
+                android:layout_marginLeft="15dp"
+                />
+
+            <RelativeLayout
+                android:layout_weight="2"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:paddingTop="3dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="65dp"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="60:00"
+                    android:textSize="24sp"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="휴대폰을 좌우로 흔들어주세요"
+                    android:textSize="12sp"
+                    android:textColor="#959595"
+                    android:gravity="center"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_15_f6e820"
+                >
+                <TextView
+                    android:id="@+id/game2start"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="시작"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--   3     -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_15_ffffff"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:elevation="3dp"
+            android:paddingLeft="20dp"
+            >
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/main_b"
+                android:layout_gravity="center_vertical"
                 />
-        </RelativeLayout>
+            <ImageView
+                android:layout_width="8dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/purple_circle"
+                android:layout_marginLeft="15dp"
+                />
+
+            <RelativeLayout
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="60:00"
+                    android:textSize="24sp"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="휴대폰을 좌우로 흔들어주세요"
+                    android:textSize="12sp"
+                    android:textColor="#959595"
+                    android:gravity="center"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_15_f6e820"
+                >
+                <TextView
+                    android:id="@+id/game3start"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="시작"
+                    android:gravity="center"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+
     </LinearLayout>
 </LinearLayout>
