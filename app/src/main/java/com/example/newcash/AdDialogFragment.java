@@ -27,6 +27,8 @@ public class AdDialogFragment extends DialogFragment {
 
     private NativeExpressAdView mNativeExpressAdView;
 
+
+
     @Nullable
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)  {

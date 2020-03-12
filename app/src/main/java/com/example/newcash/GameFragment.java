@@ -195,7 +195,7 @@ public class GameFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final AlertDialog dialogPopup = builder.create();
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.full_ad, null);
+        View view = inflater.inflate(R.layout.main_b, null);
 
         mInterstitialAd.show();
 
