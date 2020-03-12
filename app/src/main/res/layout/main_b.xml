@@ -1,78 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
 
-    <RelativeLayout
-        android:layout_width="110dp"
-        android:layout_height="60dp"
-        android:background="@drawable/main_left_top"
-        >
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/main_b"
-            android:layout_centerInParent="true"
-            />
-    </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/count_text"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="40dp"
-        android:text="00:00:00"
-        android:gravity="center"
-        android:textSize="40sp"
-        android:textColor="#000000"
+    <Button
+        android:id="@+id/a_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        android:text="ssssss"
+        android:textSize="30sp"
         />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/phone_icon"
-                android:layout_gravity="center"
-                />
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="휴대폰을 좌우로 흔들어주세요"
-            android:textSize="14sp"
-            android:textColor="#9E9E9E"
-            android:gravity="center"
-            android:layout_marginTop="100dp"
-            />
-
-        <TextView
-            android:id="@+id/game2_start"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="시작"
-            android:textColor="#ffffff"
-            android:background="@drawable/round_10_f5cc28"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="30dp"
-            />
-    </RelativeLayout>
 
 
 </LinearLayout>

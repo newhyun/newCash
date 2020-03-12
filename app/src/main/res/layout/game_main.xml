@@ -4,86 +4,96 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#ffffff"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="115dp"
-            android:orientation="horizontal"
-            android:background="@drawable/round_15_ffffff"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_height="100dp"
+            android:background="@drawable/round_10_ffffff"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="50dp"
             android:layout_marginTop="40dp"
-            android:elevation="3dp"
-            android:paddingLeft="20dp"
+            android:elevation="7dp"
+            android:orientation="horizontal"
             >
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/main_a"
-                android:layout_gravity="center_vertical"
-                />
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/purple_circle"
-                android:layout_marginLeft="15dp"
-                />
-
             <LinearLayout
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="2dp"
                 >
                 <LinearLayout
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
                     >
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="25dp"
                         android:layout_height="wrap_content"
-                        android:text="걸음수"
-                        android:textSize="12sp"
-                        />
-                    <TextView
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="4,534"
-                        android:textSize="18sp"
-                        android:textColor="#000000"
-                        android:textStyle="bold"
-                        android:gravity="right"
+                        android:src="@drawable/main_a"
+                        android:layout_gravity="center_vertical"
                         />
                 </LinearLayout>
-
-                <ProgressBar
-                    android:id="@+id/main_progress"
+                <LinearLayout
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="12dp"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:max="10000"
-                    android:progress="4946"
-                    android:progressDrawable="@drawable/progressbar_custom"
-                    />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="5dp"
+                    android:paddingRight="3dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="걸음수"
+                        android:textSize="10sp"
+                        android:layout_gravity="end"
+                        />
+                    <TextView
+                        android:id="@+id/tvStepCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="22sp"
+                        android:textColor="#000000"
+                        android:layout_gravity="end"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/main_progress"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:max="10000"
+                android:progress="0"
+                android:progressDrawable="@drawable/progressbar_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
             </LinearLayout>
             <RelativeLayout
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_15_f6e820"
+                android:layout_gravity="center"
                 >
                 <TextView
                     android:id="@+id/game1start"
@@ -91,9 +101,8 @@
                     android:layout_height="match_parent"
                     android:text="완료"
                     android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:textColor="#444444"
+                    android:textSize="14sp"
                     />
             </RelativeLayout>
         </LinearLayout>
@@ -101,44 +110,67 @@
         <!--   2   -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="115dp"
+            android:layout_height="100dp"
             android:orientation="horizontal"
-            android:background="@drawable/round_15_ffffff"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:elevation="3dp"
-            android:paddingLeft="20dp"
+            android:background="@drawable/round_10_ffffff"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="40dp"
+            android:elevation="7dp"
             >
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/phone"
-                android:layout_gravity="center_vertical"
-                />
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/purple_circle"
-                android:layout_marginLeft="15dp"
-                />
-
-            <RelativeLayout
-                android:layout_weight="2"
+            <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 >
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="60:00"
-                    android:textSize="24sp"
-                    android:textColor="#000000"
-                    android:gravity="center"
-                    android:layout_centerVertical="true"
-                    />
+                    android:layout_height="53dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    >
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/main_b"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/main_b"
+                            android:layout_gravity="center_vertical"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/main_b"
+                            android:layout_gravity="center_vertical"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -146,10 +178,11 @@
                     android:textSize="12sp"
                     android:textColor="#959595"
                     android:gravity="center"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="2dp"
                     />
-            </RelativeLayout>
+            </LinearLayout>
+
+
             <RelativeLayout
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
@@ -161,82 +194,13 @@
                     android:layout_height="match_parent"
                     android:text="시작"
                     android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:textColor="#444444"
+                    android:textSize="14sp"
                     />
             </RelativeLayout>
         </LinearLayout>
 
         <!--   3     -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="115dp"
-            android:orientation="horizontal"
-            android:background="@drawable/round_15_ffffff"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:elevation="3dp"
-            android:paddingLeft="20dp"
-            >
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/main_b"
-                android:layout_gravity="center_vertical"
-                />
-            <ImageView
-                android:layout_width="8dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/purple_circle"
-                android:layout_marginLeft="15dp"
-                />
-
-            <RelativeLayout
-                android:layout_weight="2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="60:00"
-                    android:textSize="24sp"
-                    android:textColor="#000000"
-                    android:gravity="center"
-                    android:layout_centerVertical="true"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="휴대폰을 좌우로 흔들어주세요"
-                    android:textSize="12sp"
-                    android:textColor="#959595"
-                    android:gravity="center"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_15_f6e820"
-                >
-                <TextView
-                    android:id="@+id/game3start"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="시작"
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
-            </RelativeLayout>
-        </LinearLayout>
 
 
     </LinearLayout>

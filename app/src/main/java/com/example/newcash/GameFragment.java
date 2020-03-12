@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +36,12 @@ public class GameFragment extends Fragment {
 
     public ViewPager pager;
     private CirclePageIndicator indicator;
-    private TextView game1start, game2start, game3start, count_text, watchbtn;
+    private TextView game1start, game2start, game3start, tvStepCount, watchbtn, popCount;
 
+
+    private int MILLISINFUTURE = 4 * 1000;
+    private int COUNT_DOWN_INTERVAL = 100;
+    private CountDownTimer countDownTimer;
 
     @Nullable
     @Override
@@ -47,10 +52,9 @@ public class GameFragment extends Fragment {
         //
         game1start = view.findViewById(R.id.game1start);
         game2start = view.findViewById(R.id.game2start);
-        game3start = view.findViewById(R.id.game3start);
-        count_text = view.findViewById(R.id.count_text);
+//        game3start = view.findViewById(R.id.game3start);
+        tvStepCount = view.findViewById(R.id.tvStepCount);
         watchbtn = view.findViewById(R.id.watchbtn);
-
 
         //게임시작버튼
         game1start.setOnClickListener(new View.OnClickListener() {
@@ -67,31 +71,24 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
 
                 dialogPopup2();
+
+
+
             }
         });
-
-
 
 
         return view;
     }
 
 
-    //팝업
+    //팝업1
     public void dialogPopup() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final AlertDialog dialogPopup = builder.create();
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_popup, null);
-
-        dialogPopup.setView(view);
-        dialogPopup.show();
-
-        Window window = dialogPopup.getWindow();
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-
 
         //시청버튼
         TextView watchbtn = view.findViewById(R.id.watchbtn);
@@ -116,8 +113,17 @@ public class GameFragment extends Fragment {
                 dialogPopup.dismiss();
             }
         });
+
+        dialogPopup.setView(view);
+        dialogPopup.show();
+
+        Window window = dialogPopup.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
-    //팝업
+
+
+    //팝업2
     public void dialogPopup2() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -125,8 +131,13 @@ public class GameFragment extends Fragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_popup2, null);
 
+        popCount = view.findViewById(R.id.pop_count);
+
+
         dialogPopup.setView(view);
         dialogPopup.show();
+
+        countDownTimer();
 
         Window window = dialogPopup.getWindow();
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -140,11 +151,50 @@ public class GameFragment extends Fragment {
             public void onClick(View v) {
 
                 dialogPopup.dismiss();
+                countDownTimer.cancel();
             }
         });
     }
     //팝업
 
+    public void fullAd() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog dialogPopup = builder.create();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.full_ad, null);
+
+        dialogPopup.setView(view);
+        dialogPopup.show();
+
+        Window window = dialogPopup.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+    }
+
+    private void countDownTimer() {
+
+        countDownTimer = new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                popCount.setText(millisUntilFinished / 1000 + "");
+            }
+
+            @Override
+            public void onFinish() {
+
+                fullAd();
+
+            }
+        }.start();
+    }
+
+    // 만들어서 한다
+    public void set(String a) {
+
+        tvStepCount.setText(a);
+    }
 
     //
     public void next(int i) {
