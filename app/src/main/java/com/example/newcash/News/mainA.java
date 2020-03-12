@@ -20,20 +20,18 @@ import androidx.fragment.app.Fragment;
 
 import com.example.newcash.MainActivity;
 import com.example.newcash.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.NativeExpressAdView;
 
 public class mainA extends Fragment {
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.main_a, container, false);
-
-
-        TextView gamestart = view.findViewById(R.id.gamestart);
-        TextView watchbtn = view.findViewById(R.id.watchbtn);
-        TextView cancelbtn = view.findViewById(R.id.cancelbtn);
-
 
 
 

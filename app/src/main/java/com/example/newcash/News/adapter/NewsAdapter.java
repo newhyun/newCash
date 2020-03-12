@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.newcash.AdDialogFragment;
 import com.example.newcash.News.mainA;
 import com.example.newcash.News.mainB;
 import com.example.newcash.News.mainC;
@@ -24,7 +25,7 @@ public class NewsAdapter extends FragmentStatePagerAdapter {
         switch (i) {
 
             case 0:
-                mainA tab1 = new mainA();
+                AdDialogFragment tab1 = new AdDialogFragment();
                 return tab1;
 
             case 1:

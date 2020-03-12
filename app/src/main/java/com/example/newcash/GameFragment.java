@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -29,10 +30,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.example.newcash.News.adapter.NewsAdapter;
+import com.example.newcash.News.mainA;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.NativeAd;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -57,14 +61,20 @@ public class GameFragment extends Fragment {
     private CountDownTimer countDownTimer;
 
 
-
+    //////////
+    private InterstitialAd mInterstitialAd;
+    private Button refresh;
+    private CheckBox startVideoAdsMuted;
+    private TextView videoStatus;
+    private UnifiedNativeAd nativeAd;
+    //////////
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.game_main, container, false);
-
+        fragmentManager = getFragmentManager();
         //
         game1start = view.findViewById(R.id.game1start);
         game2start = view.findViewById(R.id.game2start);
@@ -73,32 +83,32 @@ public class GameFragment extends Fragment {
         watchbtn = view.findViewById(R.id.watchbtn);
 
 
-        // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {}
-        });
+
+        /////전면광고/////
+        MobileAds.initialize(getActivity(), "ca-app-pub-5646098133984483/3530392490");
+        mInterstitialAd = new InterstitialAd(getActivity());
+        mInterstitialAd.setAdUnitId("ca-app-pub-5646098133984483/3530392490");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        ///////////
+        /////////////////
+
+
+
 
         //게임시작버튼
         game1start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 dialogPopup();
             }
         });
-
         //게임시작버튼2
         game2start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 dialogPopup2();
-
-
             }
         });
-
 
         return view;
     }
@@ -119,10 +129,12 @@ public class GameFragment extends Fragment {
             public void onClick(View v) {
                 // activity 전환
 
-                Intent intent = new Intent(getActivity(), SaveActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), SaveActivity.class);
+//                startActivity(intent);
 
                 dialogPopup.dismiss();
+                fragmentManager.beginTransaction().replace(R.id.main_container, new mainA()).commit();
+
             }
         });
 
@@ -184,6 +196,9 @@ public class GameFragment extends Fragment {
         final AlertDialog dialogPopup = builder.create();
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.full_ad, null);
+
+        mInterstitialAd.show();
+
 
         dialogPopup.setView(view);
         dialogPopup.show();
