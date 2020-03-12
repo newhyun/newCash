@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "372166652839",
+    "firebase_url": "https://newcash-7d24c.firebaseio.com",
+    "project_id": "newcash-7d24c",
+    "storage_bucket": "newcash-7d24c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372166652839:android:3d8b2f6638d27ef3d97c82",
+        "android_client_info": {
+          "package_name": "com.example.newcash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372166652839-mc64fkh79gi2akq7f3gclbfnranebeog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAibfmf2fBiWjVOJriAnFsh_rD8L3LVNeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372166652839-mc64fkh79gi2akq7f3gclbfnranebeog.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,17 +14,28 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,18 +49,19 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
     private TextView game1start;
 
-
-    //만보기
     private SensorManager sensorManager;
     private Sensor stepCountSensor;
 
+    //adMob
+    private AdView adView;
+    //adMob
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+        //최상단 필수
         fragmentManager = getSupportFragmentManager();
 
         // drawer layout
@@ -64,9 +76,30 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
+
+
+        //adMob start
+        MobileAds.initialize(this, "ca-app-pub-5646098133984483~9153968853");
+        //adMob
+        AdSize adSize = new AdSize(300, 50);
+
+        adView = findViewById(R.id.adView);
+//        adView.setAdSize(AdSize.BANNER);
+//        adView.setAdUnitId("ca-app-pub-5646098133984483/2588560504");
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+
+        adView.loadAd(adRequest);
+        //adMob end
+
+
+
         if(stepCountSensor == null) {
             Toast.makeText(this, "No Step Detect Sensor", Toast.LENGTH_SHORT).show();
         }
+
         //리셋
         long now = System.currentTimeMillis();
         Date date = new Date(now);
@@ -79,6 +112,8 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         String mm = setMin.format(date);
         String ss = setSec.format(date);
         //
+
+
 
 
 
@@ -122,20 +157,6 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
     }
 
-
-    //만보기기
-   @Override
-    protected void onResume() {
-        super.onResume();
-        sensorManager.registerListener(this, stepCountSensor, SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        sensorManager.unregisterListener(this);
-    }
-
     @Override
     public void onSensorChanged(SensorEvent event) {
         if(event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
@@ -151,6 +172,37 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
+    @Override
+    public void onPause() {
+        if (adView != null) {
+            adView.pause();
+        }
+        super.onPause();
+
+        //        sensorManager.unregisterListener(this);
+    }
+
+    /** Called when returning to the activity */
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adView != null) {
+            adView.resume();
+        }
+        sensorManager.registerListener(this, stepCountSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    /** Called before the activity is destroyed */
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+
+        super.onDestroy();
+    }
+
 
 }
 

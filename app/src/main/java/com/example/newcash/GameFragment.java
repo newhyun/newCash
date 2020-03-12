@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Message;
 import android.os.SystemClock;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +29,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.example.newcash.News.adapter.NewsAdapter;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.Locale;
@@ -34,14 +45,19 @@ public class GameFragment extends Fragment {
     public GameFragment() {}
     private FragmentManager fragmentManager;
 
+
     public ViewPager pager;
     private CirclePageIndicator indicator;
     private TextView game1start, game2start, game3start, tvStepCount, watchbtn, popCount;
 
+    private AlertDialog dialogPopup2;
 
     private int MILLISINFUTURE = 4 * 1000;
     private int COUNT_DOWN_INTERVAL = 100;
     private CountDownTimer countDownTimer;
+
+
+
 
     @Nullable
     @Override
@@ -55,6 +71,13 @@ public class GameFragment extends Fragment {
 //        game3start = view.findViewById(R.id.game3start);
         tvStepCount = view.findViewById(R.id.tvStepCount);
         watchbtn = view.findViewById(R.id.watchbtn);
+
+
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
 
         //게임시작버튼
         game1start.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +94,6 @@ public class GameFragment extends Fragment {
             public void onClick(View view) {
 
                 dialogPopup2();
-
 
 
             }
@@ -127,21 +149,11 @@ public class GameFragment extends Fragment {
     public void dialogPopup2() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        final AlertDialog dialogPopup = builder.create();
+        dialogPopup2 = builder.create();
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_popup2, null);
 
         popCount = view.findViewById(R.id.pop_count);
-
-
-        dialogPopup.setView(view);
-        dialogPopup.show();
-
-        countDownTimer();
-
-        Window window = dialogPopup.getWindow();
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
 
         //취소버튼
@@ -150,14 +162,23 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                dialogPopup.dismiss();
+                dialogPopup2.dismiss();
                 countDownTimer.cancel();
             }
         });
+
+        dialogPopup2.setView(view);
+        dialogPopup2.show();
+
+        countDownTimer();
+
+        Window window = dialogPopup2.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
     //팝업
 
-    public void fullAd() {
+       public void fullAd() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final AlertDialog dialogPopup = builder.create();
@@ -186,6 +207,8 @@ public class GameFragment extends Fragment {
 
                 fullAd();
 
+                dialogPopup2.dismiss();
+
             }
         }.start();
     }
@@ -195,6 +218,7 @@ public class GameFragment extends Fragment {
 
         tvStepCount.setText(a);
     }
+
 
     //
     public void next(int i) {

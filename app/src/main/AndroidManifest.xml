@@ -40,6 +40,15 @@
             android:launchMode="singleTask"
             />
 
+
+
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5646098133984483~9153968853" />
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
     </application>
 
 </manifest>
