@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ÃÖ»ó´Ü ÇÊ¼ö
         fragmentManager = getSupportFragmentManager();
 
         // drawer layout
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         //
         cashBox = findViewById(R.id.cash_box);
 
-        //¸¸º¸±â
+        //Â¸Â¸ÂºÂ¸Â±Ã¢fë¯¿ì„ìˆ˜ ìˆë‚˜ì—¬ ë©”ì¸
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
         //adMob start
         MobileAds.initialize(this, "ca-app-pub-5646098133984483~9153968853");
-        //adMob
+        //adMob BANNER
         AdSize adSize = new AdSize(300, 50);
 
         adView = findViewById(R.id.adView);
@@ -97,10 +96,10 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
 
         if(stepCountSensor == null) {
-            Toast.makeText(this, "No Step Detect Sensor", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "No Step Detect Sensor", Toast.LENGTH_SHORT).show();
         }
 
-        //¸®¼Â
+        //Â¸Â®Â¼Ã‚
         long now = System.currentTimeMillis();
         Date date = new Date(now);
 
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
 
 
-        // ½ÃÀÛ ÇÒ ¶§ ¹Ù·Î È£Ãâ
+        // Â½ÃƒÃ€Ã› Ã‡Ã’ Â¶Â§ Â¹Ã™Â·Ã ÃˆÂ£ÃƒÃ¢
         fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -128,8 +127,8 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
                     case R.id.game_nav:
 
-                        // Fragment ÀÌµ¿½Ã R.id.main_container == FrameLayoutÀ» ÁöÁ¤
-                        // ÀÌ°÷¿¡ °è¼Ó ÇÁ·¡±×¸ÕÆ®¸¦ ¿Ã·Á¼­ ºü¸£°Ô ºü¸£°Ô ¹Ù²Ş
+                        // Fragment Ã€ÃŒÂµÂ¿Â½Ãƒ R.id.main_container == FrameLayoutÃ€Â» ÃÃ¶ÃÂ¤
+                        // Ã€ÃŒÂ°Ã·Â¿Â¡ Â°Ã¨Â¼Ã“ Ã‡ÃÂ·Â¡Â±Ã—Â¸Ã•Ã†Â®Â¸Â¦ Â¿ÃƒÂ·ÃÂ¼Â­ ÂºÃ¼Â¸Â£Â°Ã” ÂºÃ¼Â¸Â£Â°Ã” Â¹Ã™Â²Ã
                         fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
                         cashBox.setVisibility(View.VISIBLE);
                         break;

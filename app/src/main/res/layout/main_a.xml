@@ -8,16 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Native Express Ad!" />
+        android:text="AAAAAAAAAAAAAAAAAA" />
 
-    <com.google.android.gms.ads.NativeExpressAdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="320x300"
-        ads:adUnitId="ca-app-pub-5646098133984483/4932486961">
-    </com.google.android.gms.ads.NativeExpressAdView>
 
 </RelativeLayout>

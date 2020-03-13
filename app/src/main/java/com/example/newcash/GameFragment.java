@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -25,18 +26,24 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.example.newcash.News.adapter.NewsAdapter;
 import com.example.newcash.News.mainA;
+import com.example.newcash.News.mainB;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.formats.NativeAd;
+import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.formats.UnifiedNativeAdView;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -62,7 +69,7 @@ public class GameFragment extends Fragment {
 
 
     //////////
-    private InterstitialAd mInterstitialAd;
+    private InterstitialAd mInterstitialAd, mInterstitialAd2;
     private Button refresh;
     private CheckBox startVideoAdsMuted;
     private TextView videoStatus;
@@ -83,15 +90,12 @@ public class GameFragment extends Fragment {
         watchbtn = view.findViewById(R.id.watchbtn);
 
 
-
         /////전면광고/////
         MobileAds.initialize(getActivity(), "ca-app-pub-5646098133984483/3530392490");
         mInterstitialAd = new InterstitialAd(getActivity());
         mInterstitialAd.setAdUnitId("ca-app-pub-5646098133984483/3530392490");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         ///////////
-        /////////////////
-
 
 
 
@@ -128,14 +132,14 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // activity 전환
-
 //                Intent intent = new Intent(getActivity(), SaveActivity.class);
 //                startActivity(intent);
 
                 dialogPopup.dismiss();
-                fragmentManager.beginTransaction().replace(R.id.main_container, new mainA()).commit();
+//                fragmentManager.beginTransaction().replace(R.id.main_container, new AdDialogFragment()).commit();
 
             }
+
         });
 
         //취소버튼
@@ -155,7 +159,6 @@ public class GameFragment extends Fragment {
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
-
 
     //팝업2
     public void dialogPopup2() {
@@ -199,7 +202,6 @@ public class GameFragment extends Fragment {
 
         mInterstitialAd.show();
 
-
         dialogPopup.setView(view);
         dialogPopup.show();
 
@@ -220,9 +222,11 @@ public class GameFragment extends Fragment {
             @Override
             public void onFinish() {
 
-                fullAd();
+//                fullAd();
 
                 dialogPopup2.dismiss();
+
+                fragmentManager.beginTransaction().replace(R.id.main_container, new mainB()).commit();
 
             }
         }.start();

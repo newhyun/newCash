@@ -25,7 +25,7 @@ public class NewsAdapter extends FragmentStatePagerAdapter {
         switch (i) {
 
             case 0:
-                AdDialogFragment tab1 = new AdDialogFragment();
+                mainA tab1 = new mainA();
                 return tab1;
 
             case 1:

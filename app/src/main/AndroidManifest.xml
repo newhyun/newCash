@@ -40,6 +40,14 @@
             android:launchMode="singleTask"
             />
 
+        <activity
+            android:name=".AdDialogFragment"
+            android:theme="@style/mainTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="unspecified"
+            android:launchMode="singleTask"
+            />
+
 
 
 
