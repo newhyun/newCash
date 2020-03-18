@@ -33,6 +33,30 @@
             />
 
         <activity
+            android:name=".Game.GameA_Activity"
+            android:theme="@style/mainTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="unspecified"
+            android:launchMode="singleTask"
+            />
+        <activity
+            android:name=".Game.GameB_Activity"
+            android:theme="@style/mainTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="unspecified"
+            android:launchMode="singleTask"
+            />
+        <activity
+            android:name=".Game.GameC_Activity"
+            android:theme="@style/mainTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="unspecified"
+            android:launchMode="singleTask"
+            />
+
+
+
+        <activity
             android:name=".SaveActivity"
             android:theme="@style/mainTheme"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -50,6 +74,11 @@
 
 
 
+<!--        <service android:name=".StepCheckService" android:enabled="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="app.manbo.Service"/>-->
+<!--            </intent-filter>-->
+<!--        </service>-->
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

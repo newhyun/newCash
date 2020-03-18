@@ -2,40 +2,24 @@ package com.example.newcash;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -71,7 +55,7 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         //
         cashBox = findViewById(R.id.cash_box);
 
-        //¸¸º¸±âf믿을수 있나여 메인
+        //만보기
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
@@ -99,7 +83,7 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 //            Toast.makeText(this, "No Step Detect Sensor", Toast.LENGTH_SHORT).show();
         }
 
-        //¸®¼Â
+        //시간
         long now = System.currentTimeMillis();
         Date date = new Date(now);
 
@@ -116,7 +100,7 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
 
 
-        // ½ÃÀÛ ÇÒ ¶§ ¹Ù·Î È£Ãâ
+        //시작할때 바로 불러오기
         fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -127,8 +111,6 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
                     case R.id.game_nav:
 
-                        // Fragment ÀÌµ¿½Ã R.id.main_container == FrameLayoutÀ» ÁöÁ¤
-                        // ÀÌ°÷¿¡ °è¼Ó ÇÁ·¡±×¸ÕÆ®¸¦ ¿Ã·Á¼­ ºü¸£°Ô ºü¸£°Ô ¹Ù²Þ
                         fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
                         cashBox.setVisibility(View.VISIBLE);
                         break;

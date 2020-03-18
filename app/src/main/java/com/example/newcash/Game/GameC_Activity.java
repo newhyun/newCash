@@ -1,4 +1,4 @@
-package com.example.newcash.News;
+package com.example.newcash.Game;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,20 +7,23 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.newcash.R;
 
-public class mainC extends Fragment {
+public class GameC_Activity extends AppCompatActivity {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_c);
 
-        View view = inflater.inflate(R.layout.main_c, container, false);
 
 
 
-        return view;
     }
+
+
 }

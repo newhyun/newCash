@@ -78,7 +78,7 @@
                 </LinearLayout>
             </LinearLayout>
             <ProgressBar
-                android:id="@+id/main_progress"
+                android:id="@+id/game_a_progress"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 style="?android:attr/progressBarStyleHorizontal"

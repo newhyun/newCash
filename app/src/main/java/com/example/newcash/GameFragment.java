@@ -6,10 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Message;
-import android.os.SystemClock;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,45 +13,27 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import com.example.newcash.News.adapter.NewsAdapter;
-import com.example.newcash.News.mainA;
-import com.example.newcash.News.mainB;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
+
+import com.example.newcash.Game.GameA_Activity;
+import com.example.newcash.Game.GameB_Activity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.VideoOptions;
-import com.google.android.gms.ads.formats.NativeAd;
-import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
-import com.google.android.gms.ads.formats.UnifiedNativeAdView;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.viewpagerindicator.CirclePageIndicator;
-
-import java.util.Locale;
 
 
 public class GameFragment extends Fragment {
-
     public GameFragment() {}
     private FragmentManager fragmentManager;
-
 
     public ViewPager pager;
     private CirclePageIndicator indicator;
@@ -63,13 +41,15 @@ public class GameFragment extends Fragment {
 
     private AlertDialog dialogPopup2;
 
+    private ProgressBar progressBar;
+
     private int MILLISINFUTURE = 4 * 1000;
     private int COUNT_DOWN_INTERVAL = 100;
     private CountDownTimer countDownTimer;
 
 
     //////////
-    private InterstitialAd mInterstitialAd, mInterstitialAd2;
+    private InterstitialAd mInterstitialAd;
     private Button refresh;
     private CheckBox startVideoAdsMuted;
     private TextView videoStatus;
@@ -98,6 +78,10 @@ public class GameFragment extends Fragment {
         ///////////
 
 
+        //////
+        progressBar = view.findViewById(R.id.game_a_progress);
+        //////
+
 
         //게임시작버튼
         game1start.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +101,6 @@ public class GameFragment extends Fragment {
         return view;
     }
 
-
     //팝업1
     public void dialogPopup() {
 
@@ -132,8 +115,8 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // activity 전환
-//                Intent intent = new Intent(getActivity(), SaveActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), GameA_Activity.class);
+                startActivity(intent);
 
                 dialogPopup.dismiss();
 //                fragmentManager.beginTransaction().replace(R.id.main_container, new AdDialogFragment()).commit();
@@ -197,12 +180,12 @@ public class GameFragment extends Fragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final AlertDialog dialogPopup = builder.create();
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.main_b, null);
+
+        Intent intent = new Intent(getActivity(), GameB_Activity.class);
+        startActivity(intent);
 
         mInterstitialAd.show();
 
-        dialogPopup.setView(view);
         dialogPopup.show();
 
         Window window = dialogPopup.getWindow();
@@ -222,12 +205,8 @@ public class GameFragment extends Fragment {
             @Override
             public void onFinish() {
 
-//                fullAd();
-
                 dialogPopup2.dismiss();
-
-                fragmentManager.beginTransaction().replace(R.id.main_container, new mainB()).commit();
-
+                fullAd();
             }
         }.start();
     }
@@ -236,6 +215,8 @@ public class GameFragment extends Fragment {
     public void set(String a) {
 
         tvStepCount.setText(a);
+
+        progressBar.setProgress(Integer.parseInt(a));
     }
 
 
