@@ -29,7 +29,8 @@
                 android:background="@drawable/round_gradation"
                 android:orientation="horizontal"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
                 >
                 <TextView
                     android:layout_width="match_parent"

@@ -88,6 +88,7 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 dialogPopup();
+
             }
         });
         //게임시작버튼2
@@ -119,7 +120,6 @@ public class GameFragment extends Fragment {
                 startActivity(intent);
 
                 dialogPopup.dismiss();
-//                fragmentManager.beginTransaction().replace(R.id.main_container, new AdDialogFragment()).commit();
 
             }
 
@@ -186,11 +186,11 @@ public class GameFragment extends Fragment {
 
         mInterstitialAd.show();
 
-        dialogPopup.show();
-
-        Window window = dialogPopup.getWindow();
-        window.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+//        dialogPopup.show();
+//
+//        Window window = dialogPopup.getWindow();
+//        window.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
     }
 
     private void countDownTimer() {

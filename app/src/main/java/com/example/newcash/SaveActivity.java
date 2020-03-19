@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SaveActivity extends AppCompatActivity {
 
-    private TextView save_ok;
+    private TextView save_ok, save_count;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,8 +18,13 @@ public class SaveActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_save);
 
-        save_ok = findViewById(R.id.save_ok);
+        Intent intent = getIntent();
+        int shake_count = intent.getExtras().getInt("shake_save");
 
+        save_ok = findViewById(R.id.save_ok);
+        save_count = findViewById(R.id.save_count);
+
+        save_count.setText(shake_count + "");
 
         //시청버튼
         save_ok.setOnClickListener(new View.OnClickListener() {

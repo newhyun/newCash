@@ -1,35 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <TextView
-            android:id="@+id/main_b_count"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="휴대폰을 흔들면 시작됩니다"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:layout_marginTop="150dp"
+                android:elevation="1dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="70dp"
+                >
+                <TextView
+                    android:id="@+id/main_b_count"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:gravity="end"
+                    />
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="초"
+                    android:paddingLeft="5dp"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shake_count"
+                android:gravity="center"
+                android:textColor="#9360df"
+                android:textSize="30sp"
+                android:layout_marginTop="80dp"
+                />
+            <TextView
+                android:id="@+id/main_b_StepCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="30sp"
+                android:textColor="#6326bf"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="#000000"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5646098133984483/7394320154"
             />
-        <TextView
-            android:id="@+id/main_b_StepCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="30sp"
-            android:textColor="#6326bf"
-            android:gravity="center"
-            />
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
