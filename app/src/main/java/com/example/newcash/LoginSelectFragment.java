@@ -1,9 +1,13 @@
 package com.example.newcash;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,9 +15,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.kakao.auth.AuthType;
+import com.kakao.auth.Session;
+import com.kakao.usermgmt.LoginButton;
+
 public class LoginSelectFragment extends Fragment {
 
     public LoginSelectFragment() {}
+
+    public LoginButton login_btn_kakaologin;
+    private RelativeLayout google, facebook, kakao;
 
     @Nullable
     @Override
@@ -21,17 +32,18 @@ public class LoginSelectFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_login_select, container, false);
 
-        RelativeLayout google = view.findViewById(R.id.google);
-        RelativeLayout facebook = view.findViewById(R.id.facebook);
-        RelativeLayout kakao =view.findViewById(R.id.kakao);
+        google = view.findViewById(R.id.google);
+        facebook = view.findViewById(R.id.facebook);
+        kakao =view.findViewById(R.id.kakao);
 
-//        google.setOnClickListener(new View.OnClickListener() {
+//
+//        kakao.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//
-//                Toast.makeText(getApplicationContext(), "구글로 로그인", Toast.LENGTH_LONG).show();
+//                login_btn_kakaologin.performClick();
 //            }
 //        });
+        login_btn_kakaologin = view.findViewById(R.id.login_btn_kakaologin);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -56,6 +68,12 @@ public class LoginSelectFragment extends Fragment {
 
                     case R.id.kakao:
 
+                        login_btn_kakaologin.performClick();
+
+                        Session session = Session.getCurrentSession();
+                        session.addCallback(new SessionCallback());
+                        session.open(AuthType.KAKAO_TALK, getActivity());
+
                         break;
                 }
             }
@@ -66,4 +84,7 @@ public class LoginSelectFragment extends Fragment {
 
         return view;
     }
+
+
+
 }

@@ -65,6 +65,12 @@
                 android:layout_centerInParent="true"
                 />
         </RelativeLayout>
+        <com.kakao.usermgmt.LoginButton
+            android:id="@+id/login_btn_kakaologin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:visibility="gone"/>
         <RelativeLayout
             android:id="@+id/kakao"
             android:layout_width="match_parent"
