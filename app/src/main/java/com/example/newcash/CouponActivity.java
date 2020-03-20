@@ -1,6 +1,9 @@
 package com.example.newcash;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdRequest;
@@ -14,6 +17,8 @@ public class CouponActivity extends AppCompatActivity {
     private AdView adView;
     //adMob
 
+    private LinearLayout page_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +30,7 @@ public class CouponActivity extends AppCompatActivity {
         AdSize adSize = new AdSize(300, 50);
 
         adView = findViewById(R.id.adView);
+        page_back = findViewById(R.id.page_back);
 
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -32,6 +38,13 @@ public class CouponActivity extends AppCompatActivity {
 
         adView.loadAd(adRequest);
         //adMob end
+
+        page_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 
