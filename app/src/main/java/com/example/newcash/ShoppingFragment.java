@@ -3,7 +3,6 @@ package com.example.newcash;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +29,7 @@ public class ShoppingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.shopping_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_shopping_main, container, false);
 
         webView = view.findViewById(R.id.webView);
 

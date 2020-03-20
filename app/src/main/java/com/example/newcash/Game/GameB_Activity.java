@@ -8,15 +8,11 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+
 import com.example.newcash.R;
 import com.example.newcash.SaveActivity;
 import com.google.android.gms.ads.AdRequest;
@@ -46,7 +42,7 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_b);
+        setContentView(R.layout.activity_game_b);
 
         main_b_count = findViewById(R.id.main_b_count);
         main_b_StepCount = findViewById(R.id.main_b_StepCount);

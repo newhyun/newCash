@@ -60,7 +60,7 @@ public class GameFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.game_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_game_main, container, false);
         fragmentManager = getFragmentManager();
         //
         game1start = view.findViewById(R.id.game1start);
