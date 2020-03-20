@@ -60,7 +60,13 @@
             />
 
 
-
+        <activity
+            android:name=".CouponActivity"
+            android:theme="@style/mainTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="unspecified"
+            android:launchMode="singleTask"
+            />
         <activity
             android:name=".SaveActivity"
             android:theme="@style/mainTheme"
