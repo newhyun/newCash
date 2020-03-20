@@ -16,16 +16,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.kakao.auth.AuthType;
-import com.kakao.auth.Session;
-import com.kakao.usermgmt.LoginButton;
-
 
 public class LoginSelectFragment extends Fragment {
 
     public LoginSelectFragment() {}
 
-    public LoginButton login_btn_kakaologin;
     private RelativeLayout google, facebook, kakao;
 
     @Nullable

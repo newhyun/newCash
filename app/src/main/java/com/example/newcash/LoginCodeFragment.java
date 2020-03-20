@@ -1,6 +1,10 @@
 package com.example.newcash;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,6 +20,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.securepreferences.SecurePreferences;
+
 import java.util.Random;
 
 public class LoginCodeFragment extends Fragment {
@@ -24,15 +31,28 @@ public class LoginCodeFragment extends Fragment {
 
     private TextView startBtn;
 
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+
+    private String recommend;
+    private ClipboardManager clipboard;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_login_code, container, false);
 
+        sharedPref = new SecurePreferences(getActivity(), "fncm0417", "fncm0417");
+        editor = sharedPref.edit();
+        recommend = sharedPref.getString("recommend", "");
+
+         clipboard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+
+
         LinearLayout login_top = ((LoginActivity)getActivity()).findViewById(R.id.login_top);
         TextView my_code = ((LoginActivity)getActivity()).findViewById(R.id.my_code);
-        TextView my_codenumber = ((LoginActivity)getActivity()).findViewById(R.id.my_codenumber);
+        final TextView my_codenumber = ((LoginActivity)getActivity()).findViewById(R.id.my_codenumber);
         ImageView my_codeimg = ((LoginActivity)getActivity()).findViewById(R.id.my_codeimg);
 
         startBtn = view.findViewById(R.id.startBtn);
@@ -70,33 +90,49 @@ public class LoginCodeFragment extends Fragment {
             }
         });
 
+
+        if (recommend.equals("")) {
+
+            //랜덤 스트링 생성
+            StringBuffer temp = new StringBuffer();
+            Random rnd = new Random();
+            for (int i = 0; i < 6; i++) {
+                int rIndex = rnd.nextInt(2);
+                switch (rIndex) {
+                    case 0:
+                        // A-Z
+                        temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+
+                        break;
+                    case 1:
+                        // 0-9
+                        temp.append((rnd.nextInt(10)));
+                        break;
+                }
+            }
+            my_codenumber.setText(temp);
+
+            editor.putString("recommend", temp + "");
+            editor.apply();
+
+        } else {
+
+            my_codenumber.setText(recommend);
+        }
+
+
+
         //터치시 기본 팝업
         my_codeimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "복사완료", Toast.LENGTH_SHORT).show();
 
+                ClipData clip = ClipData.newPlainText("내 추천코드", recommend);
+                clipboard.setPrimaryClip(clip);
             }
         });
 
-        //랜덤 스트링 생성
-        StringBuffer temp = new StringBuffer();
-        Random rnd = new Random();
-        for (int i = 0; i < 6; i++) {
-            int rIndex = rnd.nextInt(2);
-            switch (rIndex) {
-                case 0:
-                    // A-Z
-                    temp.append((char) ((int) (rnd.nextInt(26)) + 65));
-
-                    break;
-                case 1:
-                    // 0-9
-                    temp.append((rnd.nextInt(10)));
-                    break;
-            }
-        }
-        my_codenumber.setText(temp);
 
 
         //나중에 입력 버튼

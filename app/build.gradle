@@ -33,28 +33,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.2.3'
     implementation 'com.google.firebase:firebase-ads:19.0.1'
 
-
-    //kakao_login
-    implementation group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION
-
-    // 카카오링크 sdk를 사용하기 위해 필요.
-    implementation group: 'com.kakao.sdk', name: 'kakaolink', version: project.KAKAO_SDK_VERSION
-
-    // 카카오톡 sdk를 사용하기 위해 필요.
-    implementation group: 'com.kakao.sdk', name: 'kakaotalk', version: project.KAKAO_SDK_VERSION
-
-    // 카카오내비 sdk를 사용하기 위해 필요.
-    implementation group: 'com.kakao.sdk', name: 'kakaonavi', version: project.KAKAO_SDK_VERSION
-
-    // 카카오스토리 sdk를 사용하기 위해 필요.
-    implementation group: 'com.kakao.sdk', name: 'kakaostory', version: project.KAKAO_SDK_VERSION
-
-    // push sdk를 사용하기 위해 필요.
-    implementation group: 'com.kakao.sdk', name: 'push', version: project.KAKAO_SDK_VERSION
-//    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
-//    implementation group: project.KAKAO_SDK_GROUP, name: 'kakaotalk', version: project.KAKAO_SDK_VERSION
-//    implementation group: project.KAKAO_SDK_GROUP, name: 'push', version: project.KAKAO_SDK_VERSION
-//    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
-//    implementation 'com.kakao.sdk:usermgmt:1.17.0'
-
+    implementation 'com.scottyab:secure-preferences-lib:0.1.7'
 }

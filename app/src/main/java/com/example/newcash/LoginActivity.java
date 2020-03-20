@@ -16,14 +16,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.kakao.auth.ISessionCallback;
-import com.kakao.auth.Session;
-import com.kakao.util.exception.KakaoException;
-import com.kakao.util.helper.log.Logger;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 public class LoginActivity extends AppCompatActivity {
 
     @Override

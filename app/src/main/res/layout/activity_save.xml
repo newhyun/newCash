@@ -119,17 +119,16 @@
                 android:textSize="16sp"
                 android:paddingLeft="15dp"
                 />
+
             <TextView
                 android:id="@+id/my_codenumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N23KJ5"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                android:layout_toLeftOf="@id/my_codeimg"
                 android:layout_marginRight="10dp"
-                />
+                android:layout_toLeftOf="@id/my_codeimg"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
             <ImageView
                 android:id="@+id/my_codeimg"
                 android:layout_width="wrap_content"
