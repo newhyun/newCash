@@ -21,6 +21,7 @@
             android:textSize="12sp"
             />
         <LinearLayout
+            android:id="@+id/coupon_page"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
@@ -60,6 +61,7 @@
             android:background="#eeeeee"
             />
         <LinearLayout
+            android:id="@+id/mycode_page"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
