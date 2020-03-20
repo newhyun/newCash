@@ -3,6 +3,7 @@ package com.example.newcash;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
 import com.kakao.usermgmt.LoginButton;
+
 
 public class LoginSelectFragment extends Fragment {
 
@@ -36,14 +38,7 @@ public class LoginSelectFragment extends Fragment {
         facebook = view.findViewById(R.id.facebook);
         kakao =view.findViewById(R.id.kakao);
 
-//
-//        kakao.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                login_btn_kakaologin.performClick();
-//            }
-//        });
-        login_btn_kakaologin = view.findViewById(R.id.login_btn_kakaologin);
+//        login_btn_kakaologin = view.findViewById(R.id.login_btn_kakaologin);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -68,11 +63,7 @@ public class LoginSelectFragment extends Fragment {
 
                     case R.id.kakao:
 
-                        login_btn_kakaologin.performClick();
-
-                        Session session = Session.getCurrentSession();
-                        session.addCallback(new SessionCallback());
-                        session.open(AuthType.KAKAO_TALK, getActivity());
+//                        login_btn_kakaologin.performClick();
 
                         break;
                 }

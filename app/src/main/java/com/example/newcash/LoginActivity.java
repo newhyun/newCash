@@ -1,5 +1,6 @@
 package com.example.newcash;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
@@ -14,6 +15,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+
+import com.kakao.auth.ISessionCallback;
+import com.kakao.auth.Session;
+import com.kakao.util.exception.KakaoException;
+import com.kakao.util.helper.log.Logger;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -32,28 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.login_container, new LoginSelectFragment()).commit();
 
-        getHashKey();
 
     }
 
-    private void getHashKey(){
-        PackageInfo packageInfo = null;
-        try {
-            packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (packageInfo == null)
-            Log.e("KeyHash", "KeyHash:null");
 
-        for (Signature signature : packageInfo.signatures) {
-            try {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            } catch (NoSuchAlgorithmException e) {
-                Log.e("KeyHash", "Unable to get MessageDigest. signature=" + signature, e);
-            }
-        }
-    }
 }
