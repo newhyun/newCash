@@ -46,7 +46,7 @@ public class GameFragment extends Fragment {
 
     public ViewPager pager;
     private CirclePageIndicator indicator;
-    private TextView game1start, game2start, game3start, tvStepCount, watchbtn, popCount;
+    private TextView game1start, game2start, game3start, tvStepCount, watchbtn, popCount, game_a_coin;
 
     private AlertDialog dialogPopup2;
 
@@ -82,6 +82,7 @@ public class GameFragment extends Fragment {
 //        game3start = view.findViewById(R.id.game3start);
         tvStepCount = view.findViewById(R.id.tvStepCount);
         watchbtn = view.findViewById(R.id.watchbtn);
+        game_a_coin = view.findViewById(R.id.game_a_coin);
 
 
         /////전면광고/////
@@ -95,7 +96,7 @@ public class GameFragment extends Fragment {
         progressBar = view.findViewById(R.id.game_a_progress);
         //////
 
-        //게임시작버튼
+        //게임A_시작버튼
         game1start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,6 +171,11 @@ public class GameFragment extends Fragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_popup, null);
 
+        //만보기 캐시
+        game_a_coin = view.findViewById(R.id.game_a_coin);
+        double step = Integer.parseInt(tvStepCount.getText().toString()) * 0.01;
+        game_a_coin.setText((int) step + "");
+
         //시청버튼
         TextView watchbtn = view.findViewById(R.id.watchbtn);
         watchbtn.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +193,10 @@ public class GameFragment extends Fragment {
                             // Ad closed.
                             Intent intent = new Intent(getActivity(), GameA_Activity.class);
                             startActivity(intent);
+
+                            //버튼 비활성화
+                            game1start.setEnabled(false);
+                            game1start.setBackgroundColor(Color.parseColor("#cccccc"));
                         }
 
                         public void onUserEarnedReward(@NonNull RewardItem reward) {
@@ -324,7 +334,6 @@ public class GameFragment extends Fragment {
     public void set(String a) {
 
         tvStepCount.setText(a);
-
         progressBar.setProgress(Integer.parseInt(a));
     }
 
