@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
     private LinearLayout gameNav, shoppingNav, moreNav;
     private RelativeLayout cashBox;
 
-    private TextView game1start;
-
     private SensorManager sensorManager;
     private Sensor stepCountSensor;
 
@@ -79,9 +77,9 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
 
 
-        if(stepCountSensor == null) {
+//        if(stepCountSensor == null) {
 //            Toast.makeText(this, "No Step Detect Sensor", Toast.LENGTH_SHORT).show();
-        }
+//        }
 
         //시간
         long now = System.currentTimeMillis();
@@ -95,9 +93,6 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         String mm = setMin.format(date);
         String ss = setSec.format(date);
         //
-
-
-
 
 
         //시작할때 바로 불러오기

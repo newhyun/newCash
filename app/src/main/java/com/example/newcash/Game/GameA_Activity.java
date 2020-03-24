@@ -1,7 +1,9 @@
 package com.example.newcash.Game;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import com.example.newcash.AdDialogFragment;
-import com.example.newcash.MainActivity;
 import com.example.newcash.R;
 import com.example.newcash.SaveActivity;
 import com.google.android.gms.ads.AdListener;
@@ -34,6 +32,7 @@ import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 
 import java.util.Locale;
 
@@ -82,7 +81,7 @@ public class GameA_Activity extends AppCompatActivity {
                 startActivity(intent);
 
                 //광고 끝
-                finish();
+//                finish();
 
             }
         });
@@ -90,13 +89,7 @@ public class GameA_Activity extends AppCompatActivity {
     }
 
 
-    /**
-     * Populates a {@link UnifiedNativeAdView} object with data from a given
-     * {@link UnifiedNativeAd}.
-     *
-     * @param nativeAd the object containing the ad's assets
-     * @param adView          the view to be populated
-     */
+
     private void populateUnifiedNativeAdView(UnifiedNativeAd nativeAd, UnifiedNativeAdView adView) {
         // Set the media view.
         adView.setMediaView((MediaView) adView.findViewById(R.id.ad_media));

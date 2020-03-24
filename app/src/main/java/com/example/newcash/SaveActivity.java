@@ -48,7 +48,7 @@ public class SaveActivity extends AppCompatActivity {
 
         save_count.setText(shake_count + "");
 
-        //시청버튼
+
         save_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

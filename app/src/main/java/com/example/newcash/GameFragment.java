@@ -1,11 +1,13 @@
 package com.example.newcash;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +30,15 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAdCallback;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.viewpagerindicator.CirclePageIndicator;
 
+//
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+//
 
 public class GameFragment extends Fragment {
     public GameFragment() {}
@@ -47,6 +56,11 @@ public class GameFragment extends Fragment {
     private int COUNT_DOWN_INTERVAL = 100;
     private CountDownTimer countDownTimer;
 
+    //
+    private RewardedAd gameOverRewardedAd;
+    private RewardedAd extraCoinsRewardedAd;
+    private RewardedAd rewardedAd;
+    //
 
     //////////
     private InterstitialAd mInterstitialAd;
@@ -77,17 +91,20 @@ public class GameFragment extends Fragment {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         ///////////
 
-
-        //////
+        /////
         progressBar = view.findViewById(R.id.game_a_progress);
         //////
-
 
         //게임시작버튼
         game1start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogPopup();
+
+                if(100 > Integer.parseInt(tvStepCount.getText().toString())){
+                    dialog_game_a_none();
+                }else {
+                    dialogPopup();
+                }
 
             }
         });
@@ -99,8 +116,51 @@ public class GameFragment extends Fragment {
             }
         });
 
+        //동영상광고
+        rewardedAd = new RewardedAd(getActivity(), "ca-app-pub-5646098133984483/6662341344");
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
+            @Override
+            public void onRewardedAdLoaded() {
+                // Ad successfully loaded.
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(int errorCode) {
+                // Ad failed to load.
+            }
+        };
+        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+
         return view;
     }
+
+
+    //팝업_none
+    public void dialog_game_a_none() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog dialog_game_a_none = builder.create();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_game_a_none, null);
+
+        //취소버튼
+        TextView cancelbtn = view.findViewById(R.id.game_a_back);
+        cancelbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_game_a_none.dismiss();
+            }
+        });
+
+        dialog_game_a_none.setView(view);
+        dialog_game_a_none.show();
+
+        Window window = dialog_game_a_none.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+    }
+
+
 
     //팝업1
     public void dialogPopup() {
@@ -115,9 +175,32 @@ public class GameFragment extends Fragment {
         watchbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // activity 전환
-                Intent intent = new Intent(getActivity(), GameA_Activity.class);
-                startActivity(intent);
+
+                if (rewardedAd.isLoaded()) {
+                    Activity activityContext = null;
+                    RewardedAdCallback adCallback = new RewardedAdCallback() {
+                        public void onRewardedAdOpened() {
+                            // Ad opened.
+                        }
+
+                        public void onRewardedAdClosed() {
+                            // Ad closed.
+                            Intent intent = new Intent(getActivity(), GameA_Activity.class);
+                            startActivity(intent);
+                        }
+
+                        public void onUserEarnedReward(@NonNull RewardItem reward) {
+                            // User earned reward.
+                        }
+
+                        public void onRewardedAdFailedToShow(int errorCode) {
+                            // Ad failed to display
+                        }
+                    };
+                    rewardedAd.show(activityContext, adCallback);
+                } else {
+                    Log.d("TAG", "The rewarded ad wasn't loaded yet.");
+                }
 
                 dialogPopup.dismiss();
 
@@ -181,10 +264,36 @@ public class GameFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final AlertDialog dialogPopup = builder.create();
 
-        Intent intent = new Intent(getActivity(), GameB_Activity.class);
-        startActivity(intent);
+           if (rewardedAd.isLoaded()) {
+               Activity activityContext = null;
+               RewardedAdCallback adCallback = new RewardedAdCallback() {
+                   public void onRewardedAdOpened() {
+                       // Ad opened.
+                   }
 
-        mInterstitialAd.show();
+                   public void onRewardedAdClosed() {
+                       // Ad closed.
+                       Intent intent = new Intent(getActivity(), GameB_Activity.class);
+                       startActivity(intent);
+
+                       mInterstitialAd.show();
+                   }
+
+                   public void onUserEarnedReward(@NonNull RewardItem reward) {
+                       // User earned reward.
+                   }
+
+                   public void onRewardedAdFailedToShow(int errorCode) {
+                       // Ad failed to display
+                   }
+               };
+               rewardedAd.show(activityContext, adCallback);
+           } else {
+               Log.d("TAG", "The rewarded ad wasn't loaded yet.");
+           }
+
+
+//        mInterstitialAd.show();
 
 //        dialogPopup.show();
 //
