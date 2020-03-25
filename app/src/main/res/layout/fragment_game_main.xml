@@ -11,7 +11,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -47,7 +46,7 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/main_a"
+                        android:src="@drawable/game_a_icon"
                         android:layout_gravity="center_vertical"
                         />
                 </LinearLayout>
@@ -106,7 +105,6 @@
                     />
             </RelativeLayout>
         </LinearLayout>
-
         <!--   2   -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -141,7 +139,7 @@
                         <ImageView
                             android:layout_width="26dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/main_b"
+                            android:src="@drawable/game_b_icon"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -153,7 +151,7 @@
                         <ImageView
                             android:layout_width="26dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/main_b"
+                            android:src="@drawable/game_b_icon"
                             android:layout_gravity="center_vertical"
                             />
                     </LinearLayout>
@@ -166,7 +164,7 @@
                         <ImageView
                             android:layout_width="26dp"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/main_b"
+                            android:src="@drawable/game_b_icon"
                             android:layout_gravity="center_vertical"
                             />
                     </LinearLayout>
@@ -199,9 +197,6 @@
                     />
             </RelativeLayout>
         </LinearLayout>
-
         <!--   3     -->
-
-
     </LinearLayout>
 </LinearLayout>

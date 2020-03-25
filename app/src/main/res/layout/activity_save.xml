@@ -149,13 +149,13 @@
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/facebook_icon"
+                android:src="@drawable/facebook_logo"
                 android:layout_marginRight="45dp"
                 />
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/facebook_icon"
+                android:src="@drawable/kakao_logo"
                 android:layout_marginRight="45dp"
                 />
             <ImageView
@@ -163,10 +163,6 @@
                 android:layout_height="35dp"
                 android:src="@drawable/share_icon"
                 />
-
         </LinearLayout>
-
     </LinearLayout>
-
-
 </LinearLayout>
