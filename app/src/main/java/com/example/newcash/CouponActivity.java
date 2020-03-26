@@ -1,10 +1,15 @@
 package com.example.newcash;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -35,7 +40,7 @@ public class CouponActivity extends AppCompatActivity {
     private AdView adView;
     //adMob
 
-    private LinearLayout page_back;
+    private LinearLayout page_back, coupon_item_list;
     private Switch use_switch;
     private TextView use_ok, use_end;
 
@@ -60,6 +65,7 @@ public class CouponActivity extends AppCompatActivity {
         use_end = findViewById(R.id.use_end);
 
         coupon_list = findViewById(R.id.coupon_list);
+        coupon_item_list = findViewById(R.id.coupon_item_list);
 
 
         AdRequest adRequest = new AdRequest.Builder()
@@ -76,16 +82,13 @@ public class CouponActivity extends AppCompatActivity {
             }
         });
 
-
-        fragmentManager.beginTransaction().replace(R.id.coupon_container, new CouponUesFragment()).commit();
-
-
         //RecyclerView start
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CouponActivity.this);
         coupon_list.setLayoutManager(linearLayoutManager);
 
         ArrayList couponDTO = new ArrayList<CouponDTO>();
 
+        // 바코드이미지, 시리얼번호, 상세설명 주소
         couponDTO.add(new CouponDTO("투썸", "아메리카노", "2020.06.06", "String item_img", "1"));
         couponDTO.add(new CouponDTO("스타벅스", "아이스 아메리카노", "2020.06.06", "String item_img", "1"));
         couponDTO.add(new CouponDTO("이디야", "아메리카노", "2020.06.06", "String item_img", "1"));
@@ -112,20 +115,21 @@ public class CouponActivity extends AppCompatActivity {
         });
         //RecyclerView end
 
+
         use_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b == true){
-                    fragmentManager.beginTransaction().replace(R.id.coupon_container, new CouponEndFragment()).commit();
+                if (b == true) {
                     use_end.setTextColor(Color.parseColor("#000000"));
                     use_ok.setTextColor(Color.parseColor("#959595"));
-                }else {
-                    fragmentManager.beginTransaction().replace(R.id.coupon_container, new CouponUesFragment()).commit();
+                } else {
                     use_ok.setTextColor(Color.parseColor("#000000"));
                     use_end.setTextColor(Color.parseColor("#959595"));
                 }
             }
         });
+
     }
+
 
 }

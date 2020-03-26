@@ -38,7 +38,6 @@ public class ShoppingFragment extends Fragment {
         return view;
     }
 
-
     @SuppressLint("SetJavaScriptEnabled")
     public void createWebView() {
 
@@ -144,8 +143,8 @@ public class ShoppingFragment extends Fragment {
                 return true;
             }
         });
-
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.loadUrl(urlToLoad);
     }
+
 }
