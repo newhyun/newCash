@@ -5,11 +5,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:id="@+id/coupon_container"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +43,6 @@
                     android:gravity="center"
                     />
             </RelativeLayout>
-
             <RelativeLayout
                 android:layout_width="250dp"
                 android:layout_height="35dp"
@@ -81,12 +81,16 @@
                         />
                 </LinearLayout>
             </RelativeLayout>
-            <FrameLayout
-                android:layout_weight="1"
-                android:id="@+id/coupon_container"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/coupon_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
+                android:scrollbarSize="5dp"
+                android:scrollbarFadeDuration="10000"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbars="vertical"
+                android:divider="@null"
+                android:layout_marginBottom="50dp"
                 />
         </LinearLayout>
         <com.google.android.gms.ads.AdView

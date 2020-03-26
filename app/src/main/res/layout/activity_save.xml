@@ -43,7 +43,6 @@
                 android:letterSpacing="0.5"
                 />
         </LinearLayout>
-
         <TextView
             android:id="@+id/save_ok"
             android:layout_width="match_parent"
