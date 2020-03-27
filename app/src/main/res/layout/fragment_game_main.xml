@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -179,8 +179,6 @@
                     android:layout_marginTop="2dp"
                     />
             </LinearLayout>
-
-
             <RelativeLayout
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
@@ -198,5 +196,135 @@
             </RelativeLayout>
         </LinearLayout>
         <!--   3     -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_10_ffffff"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="40dp"
+            android:elevation="7dp"
+            >
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="윷놀이...."
+                    />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_15_f6e820"
+                >
+                <TextView
+                    android:id="@+id/game3start"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="시작"
+                    android:gravity="center"
+                    android:textColor="#444444"
+                    android:textSize="14sp"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+        <!--   4     -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:background="@drawable/round_10_ffffff"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="40dp"
+            android:elevation="7dp"
+            >
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="53dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    >
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/game_b_icon"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/game_b_icon"
+                            android:layout_gravity="center_vertical"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        >
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/game_b_icon"
+                            android:layout_gravity="center_vertical"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="행운상자"
+                    android:textSize="12sp"
+                    android:textColor="#959595"
+                    android:gravity="center"
+                    android:layout_marginTop="2dp"
+                    />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_15_f6e820"
+                >
+                <TextView
+                    android:id="@+id/game4start"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="시작"
+                    android:gravity="center"
+                    android:textColor="#444444"
+                    android:textSize="14sp"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

@@ -77,9 +77,9 @@ public class GameFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_game_main, container, false);
         fragmentManager = getFragmentManager();
         //
+
         game1start = view.findViewById(R.id.game1start);
         game2start = view.findViewById(R.id.game2start);
-//        game3start = view.findViewById(R.id.game3start);
         tvStepCount = view.findViewById(R.id.tvStepCount);
         watchbtn = view.findViewById(R.id.watchbtn);
         game_a_coin = view.findViewById(R.id.game_a_coin);

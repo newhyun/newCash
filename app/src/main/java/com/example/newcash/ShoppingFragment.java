@@ -20,10 +20,8 @@ import androidx.fragment.app.Fragment;
 
 public class ShoppingFragment extends Fragment {
 
-
     public ShoppingFragment() {}
-
-    WebView webView;
+    private WebView webView;
 
     @Nullable
     @Override

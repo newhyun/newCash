@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -22,8 +23,6 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     protected TextView cafe_name, menu_name, day_date;
     protected ImageView item_img;
     protected RelativeLayout use_end;
-
-
 
     public ViewHolder(View view) {
 
@@ -75,4 +74,5 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         this.jibun = jibun;
         super.notifyDataSetChanged();
     }
+
 }

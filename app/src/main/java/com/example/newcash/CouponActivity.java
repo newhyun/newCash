@@ -1,6 +1,7 @@
 package com.example.newcash;
 
 import android.app.AlertDialog;
+import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,13 +13,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,7 +46,7 @@ public class CouponActivity extends AppCompatActivity {
     private LinearLayout page_back, coupon_item_list;
     private Switch use_switch;
     private TextView use_ok, use_end;
-
+    private CouponAdapter couponAdapter;
     private RecyclerView coupon_list;
 
     @Override
@@ -86,7 +89,7 @@ public class CouponActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CouponActivity.this);
         coupon_list.setLayoutManager(linearLayoutManager);
 
-        ArrayList couponDTO = new ArrayList<CouponDTO>();
+        final ArrayList couponDTO = new ArrayList<CouponDTO>();
 
         // 바코드이미지, 시리얼번호, 상세설명 주소
         couponDTO.add(new CouponDTO("투썸", "아메리카노", "2020.06.06", "String item_img", "1"));
@@ -99,7 +102,7 @@ public class CouponActivity extends AppCompatActivity {
         couponDTO.add(new CouponDTO("더벤티", "아메리카노", "2020.06.06", "String item_img", "1"));
 
 
-        CouponAdapter couponAdapter = new CouponAdapter(couponDTO);
+        couponAdapter = new CouponAdapter(couponDTO);
         coupon_list.setAdapter(couponAdapter);
 
         final GestureDetector gestureDetector = new GestureDetector(CouponActivity.this, new GestureDetector.SimpleOnGestureListener() {
@@ -113,6 +116,33 @@ public class CouponActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        coupon_list.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+                View child = rv.findChildViewUnder(e.getX(), e.getY());
+
+                if (child != null && gestureDetector.onTouchEvent(e)) {
+
+                    String getCafe_name = couponAdapter.getData(rv.getChildLayoutPosition(child)).getCafe_name();
+
+                    dialog_coupon_detail(rv.getChildLayoutPosition(child));
+                }
+
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
         //RecyclerView end
 
 
@@ -122,14 +152,43 @@ public class CouponActivity extends AppCompatActivity {
                 if (b == true) {
                     use_end.setTextColor(Color.parseColor("#000000"));
                     use_ok.setTextColor(Color.parseColor("#959595"));
+
+
                 } else {
                     use_ok.setTextColor(Color.parseColor("#000000"));
                     use_end.setTextColor(Color.parseColor("#959595"));
+
                 }
             }
         });
 
+
     }
 
+    public void dialog_coupon_detail(int idx){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(CouponActivity.this);
+        final AlertDialog dialog_coupon_detail = builder.create();
+        LayoutInflater inflater = CouponActivity.this.getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_coupon_detail, null);
+
+        String getCafe_name = couponAdapter.getData(idx).getCafe_name();
+
+        LinearLayout page_back = view.findViewById(R.id.page_back);
+        page_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog_coupon_detail.dismiss();
+            }
+        });
+
+
+        dialog_coupon_detail.setView(view);
+        dialog_coupon_detail.show();
+
+        Window window = dialog_coupon_detail.getWindow();
+        window.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+    }
 
 }
