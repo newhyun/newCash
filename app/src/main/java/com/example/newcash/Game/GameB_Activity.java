@@ -64,7 +64,7 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
 
         sharedPref = new SecurePreferences(GameB_Activity.this, "fncm0417", "fncm0417");
         editor = sharedPref.edit();
-//        gameB = sharedPref.getInt("gameB", 3);
+        gameB = sharedPref.getInt("gameB", 3);
 
 
 

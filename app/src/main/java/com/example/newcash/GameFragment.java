@@ -91,36 +91,7 @@ public class GameFragment extends Fragment {
 
         gameCountSet();
 
-//        View.OnClickListener onClickListener = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                switch (gameB) {
-//
-//                    case 3:
-//
-//                        break;
-//                    case 2:
-//
-//                        game2_on1.setImageResource(R.drawable.game_b_end);
-//                        break;
-//                    case 1:
-//
-//                        game2_on1.setImageResource(R.drawable.game_b_end);
-//                        game2_on2.setImageResource(R.drawable.game_b_end);
-//                        break;
-//                    case 0:
-//
-//                        game2_on1.setImageResource(R.drawable.game_b_end);
-//                        game2_on2.setImageResource(R.drawable.game_b_end);
-//                        game2_on3.setImageResource(R.drawable.game_b_end);
-//
-//                        game2start.setEnabled(false);
-//                        game2_end();
-//                        break;
-//                }
-//            }
-//        };
+
 
         /////전면광고/////
 //        MobileAds.initialize(getActivity(), "ca-app-pub-5646098133984483/3530392490");
@@ -146,7 +117,11 @@ public class GameFragment extends Fragment {
         game2start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialogPopup2();
+                if(gameB != 0) {
+                    dialogPopup2();
+                }else {
+                    game2_end();
+                }
             }
         });
         progressBar = view.findViewById(R.id.game_a_progress);
@@ -256,7 +231,7 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                dialogPopup.dismiss();
+            dialogPopup.dismiss();
             }
         });
 
@@ -278,15 +253,14 @@ public class GameFragment extends Fragment {
 
         popCount = view.findViewById(R.id.pop_count);
 
-
         //취소버튼
         TextView cancelbtn = view.findViewById(R.id.cancelbtn);
         cancelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                dialogPopup2.dismiss();
-                countDownTimer.cancel();
+            dialogPopup2.dismiss();
+            countDownTimer.cancel();
             }
         });
 
@@ -299,7 +273,6 @@ public class GameFragment extends Fragment {
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
-    //팝업
 
 //       public void fullAd() {
 //
@@ -378,10 +351,9 @@ public class GameFragment extends Fragment {
             tvStepCount.setText(a);
             progressBar.setProgress(Integer.parseInt(a));
         }
-
     }
 
-    //팝업_game2_end
+    //game2_end_popup
     public void game2_end() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -406,15 +378,13 @@ public class GameFragment extends Fragment {
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
 
+    //게임2_횟수3번
     public void gameCountSet() {
-
-        Log.d("gameB", gameB+"");
 
         gameB = sharedPref.getInt("gameB", 3);
 
         if(gameB == 2){
 
-            Log.d("gameB2", gameB+"");
             game2_on1.setImageResource(R.drawable.game_b_end);
 
         } else if (gameB == 1){
@@ -427,26 +397,6 @@ public class GameFragment extends Fragment {
             game2_on1.setImageResource(R.drawable.game_b_end);
             game2_on2.setImageResource(R.drawable.game_b_end);
             game2_on3.setImageResource(R.drawable.game_b_end);
-
-            game2start.setEnabled(false);
-
-        }
-    }
-
-    //
-    public void next(int i) {
-
-        if (i == 0) {
-
-            pager.setCurrentItem(0, true);
-
-        } else if (i == 1) {
-
-            pager.setCurrentItem(1, true);
-
-        } else if (i == 2) {
-
-            pager.setCurrentItem(2, true);
         }
     }
 }

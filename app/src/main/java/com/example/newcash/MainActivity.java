@@ -4,18 +4,26 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -23,7 +31,10 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity  implements SensorEventListener{
 
@@ -39,7 +50,6 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
     private AdView adView;
     //adMob
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +61,6 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         shoppingNav = findViewById(R.id.shopping_nav);
         moreNav = findViewById(R.id.more_nav);
 
-        //
         cashBox = findViewById(R.id.cash_box);
 
         //만보기
@@ -59,41 +68,31 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
 
-
         //adMob start
         MobileAds.initialize(this, "ca-app-pub-5646098133984483~9153968853");
         //adMob BANNER
         AdSize adSize = new AdSize(300, 50);
-
         adView = findViewById(R.id.adView);
-//        adView.setAdSize(AdSize.BANNER);
-//        adView.setAdUnitId("ca-app-pub-5646098133984483/2588560504");
-
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
-
         adView.loadAd(adRequest);
         //adMob end
 
 
 
-//        if(stepCountSensor == null) {
-//            Toast.makeText(this, "No Step Detect Sensor", Toast.LENGTH_SHORT).show();
-//        }
-
         //시간
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
+//        long now = System.currentTimeMillis();
+//        Date date = new Date(now);
+//
+//        SimpleDateFormat setHour = new SimpleDateFormat("HH");
+//        SimpleDateFormat setMin = new SimpleDateFormat("mm");
+//        SimpleDateFormat setSec = new SimpleDateFormat("ss");
+//
+//        String HH = setHour.format(date);
+//        String mm = setMin.format(date);
+//        String ss = setSec.format(date);
 
-        SimpleDateFormat setHour = new SimpleDateFormat("HH");
-        SimpleDateFormat setMin = new SimpleDateFormat("mm");
-        SimpleDateFormat setSec = new SimpleDateFormat("ss");
-
-        String HH = setHour.format(date);
-        String mm = setMin.format(date);
-        String ss = setSec.format(date);
-        //
 
 
         //시작할때 바로 불러오기
@@ -102,35 +101,32 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            switch (v.getId()) {
 
-                switch (v.getId()) {
+                case R.id.game_nav:
 
-                    case R.id.game_nav:
+                    fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
+                    cashBox.setVisibility(View.VISIBLE);
+                    break;
 
-                        fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
-                        cashBox.setVisibility(View.VISIBLE);
-                        break;
+                case R.id.shopping_nav:
 
-                    case R.id.shopping_nav:
+                    fragmentManager.beginTransaction().replace(R.id.main_container, new ShoppingFragment()).commit();
+                    cashBox.setVisibility(View.VISIBLE);
+                    break;
 
-                        fragmentManager.beginTransaction().replace(R.id.main_container, new ShoppingFragment()).commit();
-                        cashBox.setVisibility(View.VISIBLE);
-                        break;
+                case R.id.more_nav:
 
-                    case R.id.more_nav:
-
-                        fragmentManager.beginTransaction().replace(R.id.main_container, new MoreFragment()).commit();
-                        cashBox.setVisibility(View.GONE);
-                        break;
-                }
+                    fragmentManager.beginTransaction().replace(R.id.main_container, new MoreFragment()).commit();
+                    cashBox.setVisibility(View.GONE);
+                    break;
+            }
             }
 
         };
-
         gameNav.setOnClickListener(onClickListener);
         shoppingNav.setOnClickListener(onClickListener);
         moreNav.setOnClickListener(onClickListener);
-
 
     }
 
@@ -201,4 +197,3 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 
 
 }
-

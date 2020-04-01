@@ -21,6 +21,7 @@
             </intent-filter>
         </service>
 
+
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme"
@@ -88,8 +89,15 @@
             android:launchMode="singleTask"
             />
 
+        <receiver android:name=".DeviceBootReceiver"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".AlarmReceiver" />
 
-<!--        <service android:name=".StepCheckService" android:enabled="true">-->
+        <!--        <service android:name=".StepCheckService" android:enabled="true">-->
 <!--            <intent-filter>-->
 <!--                <action android:name="app.manbo.Service"/>-->
 <!--            </intent-filter>-->
