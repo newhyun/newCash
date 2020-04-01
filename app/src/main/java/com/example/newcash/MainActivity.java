@@ -11,6 +11,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -148,6 +149,25 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1111) {
+
+            if (resultCode == RESULT_OK) {
+
+//                fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
+
+                GameFragment gameFragment = (GameFragment) getSupportFragmentManager().findFragmentById(R.id.main_container);
+                gameFragment.gameCountSet();
+            }
+        }
+    }
+
 
     @Override
     public void onPause() {

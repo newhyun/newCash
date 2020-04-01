@@ -2,12 +2,15 @@ package com.example.newcash.Game;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -19,6 +22,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.securepreferences.SecurePreferences;
 
 
 public class GameB_Activity extends AppCompatActivity implements SensorEventListener {
@@ -29,6 +33,11 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
     private int MILLISINFUTURE = 6 * 1000;
     private int COUNT_DOWN_INTERVAL = 100;
     private CountDownTimer countDownTimer;
+
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+    private int gameB;
+
 
     private TextView main_b_count, main_b_StepCount;
 
@@ -53,6 +62,10 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
 
         main_b_StepCount.setText("0");
 
+        sharedPref = new SecurePreferences(GameB_Activity.this, "fncm0417", "fncm0417");
+        editor = sharedPref.edit();
+//        gameB = sharedPref.getInt("gameB", 3);
+
 
 
         //adMob start
@@ -75,7 +88,6 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-
         if(event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
 
             aa++;
@@ -84,14 +96,20 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
 
             if(aa == 2) {
                 countDownTimer();
+
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+
+                if(gameB < 0){
+                    editor.putInt("gameB", 0);
+                    editor.apply();
+                }else {
+                    editor.putInt("gameB", gameB -1);
+                    editor.apply();
+                }
             }
         }
     }
-
-//    public void set(String a) {
-//
-//        main_b_StepCount.setText(a);
-//    }
 
     private void countDownTimer() {
 
@@ -107,8 +125,9 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
 
                 Intent intent = new Intent(GameB_Activity.this, SaveActivity.class);
                 intent.putExtra("shake_save", aa);
+                startActivityForResult(intent, 1111);
 
-                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, 0);
 
                 finish();
 

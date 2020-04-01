@@ -6,7 +6,6 @@
     android:background="@android:color/transparent"
     android:id="@+id/dialogPopup2"
     >
-
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -18,9 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             >
-
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -32,52 +29,17 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="25dp"
                 />
-
         </RelativeLayout>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:text="광고 시청 후"
+            android:text="오늘은 그만~ 그만~ㅋㅋ"
             android:textSize="16sp"
             android:textColor="#000000"
             android:gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="100dp"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:text="게임이 시작됩니다"
-            android:textSize="16sp"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            />
-
-        <TextView
-            android:id="@+id/pop_count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="3"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            />
-
-
-        <TextView
-            android:layout_width="170dp"
-            android:layout_height="match_parent"
-            android:text="3G/4G 환경에서는 데이터 요금이 발생할 수 있습니다"
-            android:textColor="#959595"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -86,21 +48,15 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             >
-
-
             <TextView
-                android:id="@+id/cancelbtn"
+                android:id="@+id/game_b_back"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_9985b9"
-                android:text="취소"
+                android:text="확인"
                 android:textColor="#ffffff"
                 android:gravity="center"
                 />
-
         </LinearLayout>
     </LinearLayout>
-
-
-
 </RelativeLayout>

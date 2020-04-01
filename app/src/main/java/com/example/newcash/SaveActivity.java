@@ -54,6 +54,7 @@ public class SaveActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // activity 종료
                 finish();
+
             }
         });
 

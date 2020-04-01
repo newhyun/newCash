@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
+    android:id="@+id/dialogPopup2"
     >
-
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -17,9 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             >
-
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -31,9 +29,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="25dp"
                 />
-
         </RelativeLayout>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -43,45 +39,26 @@
             android:gravity="center"
             android:layout_marginTop="50dp"
             />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            >
-
-            <TextView
-                android:id="@+id/game_a_coin"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:bufferType="spannable"
-                android:gravity="right"
-                android:text="100"
-                android:textColor="#6326BF"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="원 적립"
-                android:textSize="20sp"
-                android:textColor="#6326BF"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:text="가능합니다"
+            android:text="게임이 시작됩니다"
             android:textSize="16sp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/pop_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textSize="40sp"
+            android:textStyle="bold"
             android:textColor="#000000"
             android:gravity="center"
             android:layout_marginTop="20dp"
             />
-
-
         <TextView
             android:layout_width="170dp"
             android:layout_height="match_parent"
@@ -92,7 +69,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -101,33 +77,15 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             >
-
-            <TextView
-                android:id="@+id/watchbtn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/round_10_f5cc28"
-                android:text="시청하기"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:layout_marginRight="8dp"
-                />
-
             <TextView
                 android:id="@+id/cancelbtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
                 android:background="@drawable/round_9985b9"
                 android:text="취소"
                 android:textColor="#ffffff"
                 android:gravity="center"
                 />
-
         </LinearLayout>
     </LinearLayout>
-
-
-
 </RelativeLayout>

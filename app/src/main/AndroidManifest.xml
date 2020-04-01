@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
+        <service android:name="com.example.newcash.FireBaseInstanceIdService" android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
 
         <activity
             android:name=".LoginActivity"
@@ -88,7 +94,6 @@
 <!--                <action android:name="app.manbo.Service"/>-->
 <!--            </intent-filter>-->
 <!--        </service>-->
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5646098133984483~9153968853" />

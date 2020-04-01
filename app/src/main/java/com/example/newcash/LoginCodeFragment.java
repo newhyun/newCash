@@ -120,8 +120,6 @@ public class LoginCodeFragment extends Fragment {
             my_codenumber.setText(recommend);
         }
 
-
-
         //터치시 기본 팝업
         my_codeimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,8 +131,6 @@ public class LoginCodeFragment extends Fragment {
             }
         });
 
-
-
         //나중에 입력 버튼
         laterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,25 +140,6 @@ public class LoginCodeFragment extends Fragment {
                 getActivity().finish();
             }
         });
-
-
-
-//        RelativeLayout google = view.findViewById(R.id.google);
-//
-//        View.OnClickListener onClickListener = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                switch (v.getId()) {
-//
-//                    case R.id.google:
-//
-//                        Toast.makeText(getActivity(), "google 로그인", Toast.LENGTH_LONG).show();
-//                        break;
-//                }
-//            }
-//        };
-//        google.setOnClickListener(onClickListener);
 
         return view;
     }

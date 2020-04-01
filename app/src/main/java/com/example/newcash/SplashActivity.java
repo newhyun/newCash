@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class SplashActivity extends AppCompatActivity {
 
 
@@ -16,6 +17,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_save);
+
+
 
 
         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
