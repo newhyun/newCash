@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
         //adMob end
 
 
-
         //시간
 //        long now = System.currentTimeMillis();
 //        Date date = new Date(now);

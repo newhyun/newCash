@@ -10,7 +10,10 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -37,9 +40,10 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     private int gameB;
-
+    private Animation animIn;
 
     private TextView main_b_count, main_b_StepCount;
+    private ImageView second_back;
 
     //adMob
     private AdView adView;
@@ -55,6 +59,8 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
 
         main_b_count = findViewById(R.id.main_b_count);
         main_b_StepCount = findViewById(R.id.main_b_StepCount);
+
+        second_back = findViewById(R.id.second_back);
 
         //만보기
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
@@ -81,6 +87,22 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
 
         adView.loadAd(adRequest);
         //adMob end
+
+
+        animIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_rotate);
+
+        animIn.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                second_back.startAnimation(animIn);
+            }
+        });
 
     }
 
@@ -118,6 +140,8 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
             public void onTick(long millisUntilFinished) {
 
                 main_b_count.setText(millisUntilFinished / 1000 + "");
+
+                second_back.startAnimation(animIn);
             }
 
             @Override

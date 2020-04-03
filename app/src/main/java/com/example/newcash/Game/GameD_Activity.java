@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.newcash.R;
 
-public class GameC_Activity extends AppCompatActivity {
+public class GameD_Activity extends AppCompatActivity {
 
     @Nullable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_c);
+        setContentView(R.layout.activity_game_d);
 
 
 

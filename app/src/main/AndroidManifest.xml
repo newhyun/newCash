@@ -53,7 +53,7 @@
             />
         <activity
             android:name=".Game.GameB_Activity"
-            android:theme="@style/mainTheme"
+            android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="unspecified"
             android:launchMode="singleTask"
