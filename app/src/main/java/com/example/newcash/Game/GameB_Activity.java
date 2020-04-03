@@ -72,8 +72,6 @@ public class GameB_Activity extends AppCompatActivity implements SensorEventList
         editor = sharedPref.edit();
         gameB = sharedPref.getInt("gameB", 3);
 
-
-
         //adMob start
         MobileAds.initialize(this, "ca-app-pub-5646098133984483~9153968853");
         //adMob BANNER

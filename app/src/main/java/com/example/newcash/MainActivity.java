@@ -158,7 +158,17 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
 //                fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
 
                 GameFragment gameFragment = (GameFragment) getSupportFragmentManager().findFragmentById(R.id.main_container);
-                gameFragment.gameCountSet();
+                gameFragment.gameBCountSet();
+            }
+        }
+        if (requestCode == 2222) {
+
+            if (resultCode == RESULT_OK) {
+
+//                fragmentManager.beginTransaction().replace(R.id.main_container, new GameFragment()).commit();
+
+                GameFragment gameFragment = (GameFragment) getSupportFragmentManager().findFragmentById(R.id.main_container);
+                gameFragment.gameDCountSet();
             }
         }
     }

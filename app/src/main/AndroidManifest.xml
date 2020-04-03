@@ -65,6 +65,14 @@
             android:screenOrientation="unspecified"
             android:launchMode="singleTask"
             />
+        <activity
+            android:name=".Game.GameD_Activity"
+            android:theme="@style/mainTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="unspecified"
+            android:launchMode="singleTask"
+            />
+
 
 
         <activity

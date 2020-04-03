@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.newcash.Game.GameB_Activity;
+import com.example.newcash.Game.GameD_Activity;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.securepreferences.SecurePreferences;
@@ -41,7 +42,7 @@ public class GameFragment extends Fragment {
 
     public ViewPager pager;
     private CirclePageIndicator indicator;
-    private TextView game1start, game2start, game3start, tvStepCount, watchbtn, popCount, game_a_coin;
+    private TextView game1start, game2start, game3start, game4start, tvStepCount, watchbtn, popCount, game_a_coin;
 
     private AlertDialog dialogPopup2;
 
@@ -57,9 +58,10 @@ public class GameFragment extends Fragment {
     private RewardedAd rewardedAd;
     //
     private ImageView game2_on1, game2_on2, game2_on3;
+    private ImageView game4_on1, game4_on2, game4_on3;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
-    private int gameB;
+    private int gameB, gameD;
     //////////
     private InterstitialAd mInterstitialAd;
     private Button refresh;
@@ -67,6 +69,8 @@ public class GameFragment extends Fragment {
     private TextView videoStatus;
     private UnifiedNativeAd nativeAd;
     //////////
+
+    private int gameNumber = 0;
 
     @Nullable
     @Override
@@ -77,6 +81,7 @@ public class GameFragment extends Fragment {
 
         game1start = view.findViewById(R.id.game1start);
         game2start = view.findViewById(R.id.game2start);
+        game4start = view.findViewById(R.id.game4start);
         tvStepCount = view.findViewById(R.id.tvStepCount);
         watchbtn = view.findViewById(R.id.watchbtn);
         game_a_coin = view.findViewById(R.id.game_a_coin);
@@ -85,13 +90,18 @@ public class GameFragment extends Fragment {
         game2_on2 = view.findViewById(R.id.game2_on2);
         game2_on3 = view.findViewById(R.id.game2_on3);
 
+        game4_on1 = view.findViewById(R.id.game4_on1);
+        game4_on2 = view.findViewById(R.id.game4_on2);
+        game4_on3 = view.findViewById(R.id.game4_on3);
 
         sharedPref = new SecurePreferences(getActivity(), "fncm0417", "fncm0417");
         editor = sharedPref.edit();
 
-        gameCountSet();
+        gameBCountSet();
+        gameDCountSet();
 
-
+        //game1
+        progressBar = view.findViewById(R.id.game_a_progress);
 
         /////전면광고/////
 //        MobileAds.initialize(getActivity(), "ca-app-pub-5646098133984483/3530392490");
@@ -118,13 +128,33 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(gameB != 0) {
+
+                    gameNumber = 2;
+
                     dialogPopup2();
+
                 }else {
                     game2_end();
                 }
             }
         });
-        progressBar = view.findViewById(R.id.game_a_progress);
+        //게임시작버튼4
+        game4start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(gameD != 0){
+
+                    gameNumber = 4;
+
+                    dialogPopup2();
+
+                }else {
+
+                    game2_end();
+
+                }
+            }
+        });
 
         //동영상광고
 //        rewardedAd = new RewardedAd(getActivity(), "ca-app-pub-5646098133984483/6662341344");
@@ -329,17 +359,24 @@ public class GameFragment extends Fragment {
             @Override
             public void onFinish() {
 
-                // 오류 났엇음
-                Intent intent = new Intent(getActivity(), GameB_Activity.class);
-                getActivity().startActivityForResult(intent, 1111);
-                dialogPopup2.dismiss();
+                if(gameNumber == 2){
+                    Intent intent = new Intent(getActivity(), GameB_Activity.class);
+                    getActivity().startActivityForResult(intent, 1111);
+                    dialogPopup2.dismiss();
 
 //                fullAd();
+                }else if(gameNumber == 4){
+                    Intent intent = new Intent(getActivity(), GameD_Activity.class);
+                    getActivity().startActivityForResult(intent, 2222);
+                    dialogPopup2.dismiss();
+
+//                fullAd();
+                }
             }
         }.start();
     }
 
-    // 만들어서 한다
+    // game1
     public void set(String a) {
 
         if(a.equals("")){
@@ -379,7 +416,7 @@ public class GameFragment extends Fragment {
     }
 
     //게임2_횟수3번
-    public void gameCountSet() {
+    public void gameBCountSet() {
 
         gameB = sharedPref.getInt("gameB", 3);
 
@@ -397,6 +434,27 @@ public class GameFragment extends Fragment {
             game2_on1.setImageResource(R.drawable.game_b_end);
             game2_on2.setImageResource(R.drawable.game_b_end);
             game2_on3.setImageResource(R.drawable.game_b_end);
+        }
+    }
+    //게임4_횟수3번
+    public void gameDCountSet() {
+
+        gameD = sharedPref.getInt("gameD", 3);
+
+        if(gameD == 2){
+
+            game4_on1.setImageResource(R.drawable.game_4_end);
+
+        } else if (gameD == 1){
+
+            game4_on1.setImageResource(R.drawable.game_4_end);
+            game4_on2.setImageResource(R.drawable.game_4_end);
+
+        }else if (gameD == 0){
+
+            game4_on1.setImageResource(R.drawable.game_4_end);
+            game4_on2.setImageResource(R.drawable.game_4_end);
+            game4_on3.setImageResource(R.drawable.game_4_end);
         }
     }
 }
