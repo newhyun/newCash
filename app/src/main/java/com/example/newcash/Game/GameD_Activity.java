@@ -52,7 +52,7 @@ public class GameD_Activity extends AppCompatActivity {
 
     private int randombox;
 
-    private LinearLayout gift_box;
+    private LinearLayout gift_box, game4_ok, game4_kakao_ok;
 
     private KonfettiView viewKonfetti;
 
@@ -117,6 +117,7 @@ public class GameD_Activity extends AppCompatActivity {
 
         TextView game4_cash = view.findViewById(R.id.game4_cash);
 
+        //랜덤
         Random random = new Random();
         int randomInt = random.nextInt(1001);
 
@@ -138,6 +139,7 @@ public class GameD_Activity extends AppCompatActivity {
         }
 
         game4_cash.setText("" + randomArrayList.get(randomInt));
+        //랜덤
 
 //        for (int i = 1; i <= 100; i++) {
 //
@@ -154,9 +156,10 @@ public class GameD_Activity extends AppCompatActivity {
 //            }
 //        }
 
+        //폭죽
         KonfettiView viewKonfetti = view.findViewById(R.id.viewKonfetti);
         ImageView game_d_coin = view.findViewById(R.id.game_d_coin);
-        //폭죽
+
         viewKonfetti.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                 .setDirection(0.0, 359.0)
@@ -167,6 +170,14 @@ public class GameD_Activity extends AppCompatActivity {
                 .addSizes(new Size(10, 5))
                 .setPosition(game_d_coin.getX() + game_d_coin.getWidth(), game_d_coin.getY() + game_d_coin.getHeight())
                 .burst(800);
+        //폭죽
+
+        LinearLayout game4_ok = view.findViewById(R.id.game4_ok);
+        LinearLayout game4_kakao_ok = view.findViewById(R.id.game4_kakao_ok);
+        if(gameD == 1){
+            game4_ok.setVisibility(View.GONE);
+            game4_kakao_ok.setVisibility(View.VISIBLE);
+        }
 
         //취소버튼
         TextView cancelbtn = view.findViewById(R.id.game_d_back);
